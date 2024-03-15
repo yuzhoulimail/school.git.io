@@ -11,7 +11,7 @@
         document.addEventListener('DOMContentLoaded', function() {
             const apiKey = 'AIzaSyAuzwXywooDucEtxHH0nmTU5VHEsZIDUDo';
             const spreadsheetId = '1386834576';
-            const range = 'Sheet1!A1:C6';
+            const range = 'sheet1!A1:C6';
             const url = `https://sheets.googleapis.com/v4/spreadsheets/${spreadsheetId}/values/${range}?key=${apiKey}`;
 
             fetch(url)
