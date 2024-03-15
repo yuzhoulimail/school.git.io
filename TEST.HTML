@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Access Google Sheets from Local File</title>
+</head>
+<body>
+    <h1>Google Sheets Data</h1>
+    <div id="content"></div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const apiKey = 'AIzaSyAuzwXywooDucEtxHH0nmTU5VHEsZIDUDo';
+            const spreadsheetId = '1386834576';
+            const range = 'Sheet1!A1:C6';
+            const url = `https://sheets.googleapis.com/v4/spreadsheets/${spreadsheetId}/values/${range}?key=${apiKey}`;
+
+            fetch(url)
+                .then(response => response.json())
+                .then(data => {
+                    const sheetData = data.values;
+                    const contentDiv = document.getElementById('content');
+
+                    if (sheetData.length > 0) {
+                        sheetData.forEach((row) => {
+                            const p = document.createElement('p');
+                            p.textContent = row.join(', ');
+                            contentDiv.appendChild(p);
+                        });
+                    } else {
+                        contentDiv.textContent = 'No data found.';
+                    }
+                })
+                .catch(error => console.error('Error:', error));
+        });
+    </script>
+</body>
+</html>
+
